@@ -14,8 +14,7 @@
     "build-cli": "webpack-cli --config ./webpack/cli.webpack.config.js",
     "build-server": "webpack-cli --config ./webpack/server.webpack.config.js",
     "build-provider": "webpack-cli --config ./webpack/provider.webpack.config.js",
-    "build-lib": "webpack-cli --config ./webpack/lib.webpack.config.js",
-    "prepare": "npm run build"
+    "build-lib": "webpack-cli --config ./webpack/lib.webpack.config.js"
   },
   "devDependencies": {
     "bn.js": "^4.11.6",
