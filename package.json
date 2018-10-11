@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "bn.js": "^4.11.6",
-    "ganache-core": "git+ssh://git@github.com:celo-org/ganache-core.git#a352c7e",
+    "ganache-core": "git+ssh://git@github.com:celo-org/ganache-core.git#4636949",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
