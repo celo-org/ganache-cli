@@ -2500,9 +2500,9 @@ ethereumjs-vm@^2.0.2, ethereumjs-vm@^2.1.0, ethereumjs-vm@^2.3.4:
     rustbn.js "~0.2.0"
     safe-buffer "^5.1.1"
 
-"ethereumjs-vm@git+ssh://git@github.com/celo-org/ethereumjs-vm.git#f56e8a7":
+"ethereumjs-vm@git+ssh://git@github.com/celo-org/ethereumjs-vm.git#83f3b81":
   version "2.4.0"
-  resolved "git+ssh://git@github.com/celo-org/ethereumjs-vm.git#f56e8a7f824abe98771d0eeb729d04a065d139ac"
+  resolved "git+ssh://git@github.com/celo-org/ethereumjs-vm.git#83f3b818959d13eecfc0e113a5143c0c88fa82aa"
   dependencies:
     async "^2.1.2"
     async-eventemitter "^0.2.2"
@@ -3000,9 +3000,9 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-"ganache-core@git+ssh://git@github.com:celo-org/ganache-core.git#885a48d":
+"ganache-core@git+ssh://git@github.com:celo-org/ganache-core.git#4b76726":
   version "2.2.1"
-  resolved "git+ssh://git@github.com:celo-org/ganache-core.git#885a48d01c70adbb74350d76dd9291d95e75ab05"
+  resolved "git+ssh://git@github.com:celo-org/ganache-core.git#4b767269ceaef86dd06b7909e7d580beee6d0001"
   dependencies:
     abstract-leveldown "^3.0.0"
     async "^2.5.0"
@@ -3017,7 +3017,7 @@ functional-red-black-tree@^1.0.1:
     ethereumjs-block "~1.2.2"
     ethereumjs-tx "1.3.4"
     ethereumjs-util "^5.2.0"
-    ethereumjs-vm "git+ssh://git@github.com/celo-org/ethereumjs-vm.git#f56e8a7"
+    ethereumjs-vm "git+ssh://git@github.com/celo-org/ethereumjs-vm.git#83f3b81"
     ethereumjs-wallet "0.6.0"
     fake-merkle-patricia-tree "~1.0.1"
     heap "~0.2.6"
