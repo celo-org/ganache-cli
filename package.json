@@ -2,7 +2,7 @@
   "name": "@celo/ganache-cli",
   "version": "6.4.3",
   "bin": {
-    "ganache-cli": "cli.js"
+    "@celo/ganache-cli": "cli.js"
   },
   "main": "./build/ganache-core.node.cli.js",
   "scripts": {
