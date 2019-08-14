@@ -2,7 +2,7 @@
   "name": "@celo/ganache-cli",
   "version": "6.4.3",
   "bin": {
-    "celo-ganache-cli": "cli.js"
+    "ganache-cli": "cli.js"
   },
   "main": "./build/ganache-core.node.cli.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "yargs"
   ],
   "devDependencies": {
-    "ganache-core": "git+ssh://git@github.com:celo-org/ganache-core.git#49b7527",
+    "@celo/ganache-core": "git+ssh://git@github.com:celo-org/ganache-core.git#855b58e",
     "js-scrypt": "0.2.0",
     "node-loader": "^0.6.0",
     "on-build-webpack": "^0.1.0",
