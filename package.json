@@ -22,7 +22,7 @@
     "yargs"
   ],
   "devDependencies": {
-    "@celo/ganache-core": "git+ssh://git@github.com:celo-org/ganache-core.git#855b58e",
+    "@celo/ganache-core": "git+ssh://git@github.com:celo-org/ganache-core.git#6b3a96e",
     "js-scrypt": "0.2.0",
     "node-loader": "^0.6.0",
     "on-build-webpack": "^0.1.0",
