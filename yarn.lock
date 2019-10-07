@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@celo/ganache-core@https://github.com/celo-org/ganache-core.git#4bebe08":
+"@celo/ganache-core@https://github.com/celo-org/ganache-core.git#a6ff5dc":
   version "2.7.0"
-  resolved "https://github.com/celo-org/ganache-core.git#4bebe0883c4f0ba627653fcc6c1a45c552d98626"
+  resolved "https://github.com/celo-org/ganache-core.git#a6ff5dc4c168489c0039f14db6e229516cceb71d"
   dependencies:
     abstract-leveldown "3.0.0"
     async "2.6.2"
@@ -19,7 +19,7 @@
     ethereumjs-block "2.2.0"
     ethereumjs-tx "1.3.7"
     ethereumjs-util "6.1.0"
-    ethereumjs-vm "https://github.com/celo-org/ethereumjs-vm.git#ed9ec30"
+    ethereumjs-vm "https://github.com/celo-org/ethereumjs-vm.git#a381885"
     heap "0.2.6"
     level-sublevel "6.6.4"
     levelup "3.1.1"
@@ -2697,9 +2697,9 @@ ethereumjs-util@~6.0.0:
     safe-buffer "^5.1.1"
     secp256k1 "^3.0.1"
 
-ethereumjs-vm@^2.1.0, ethereumjs-vm@^2.3.4, ethereumjs-vm@^2.6.0, "ethereumjs-vm@https://github.com/celo-org/ethereumjs-vm.git#ed9ec30":
+ethereumjs-vm@^2.1.0, ethereumjs-vm@^2.3.4, ethereumjs-vm@^2.6.0, "ethereumjs-vm@https://github.com/celo-org/ethereumjs-vm.git#a381885":
   version "3.0.0"
-  resolved "https://github.com/celo-org/ethereumjs-vm.git#ed9ec301fad03f4e48771db1e0d0921b0a6963e2"
+  resolved "https://github.com/celo-org/ethereumjs-vm.git#a3818857e9edf69575ec44d4d04b44f13997ab0d"
   dependencies:
     async "^2.1.2"
     async-eventemitter "^0.2.2"
