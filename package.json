@@ -22,7 +22,7 @@
     "ethereumjs-util"
   ],
   "devDependencies": {
-    "@celo/ganache-core": "https://github.com/celo-org/ganache-core.git#a6ff5dc",
+    "@celo/ganache-core": "https://github.com/celo-org/ganache-core.git#28eb8c3",
     "js-scrypt": "0.2.0",
     "node-loader": "^0.6.0",
     "on-build-webpack": "^0.1.0",
@@ -34,7 +34,7 @@
     "webpack-cli": "3.1.0"
   },
   "resolutions": {
-    "**/ethereumjs-vm": "https://github.com/celo-org/ethereumjs-vm.git#a381885"
+    "**/ethereumjs-vm": "https://github.com/celo-org/ethereumjs-vm.git#0fd539c"
   },
   "repository": {
     "type": "git",
