@@ -10,42 +10,42 @@ const MNEMONIC = 'concert load couple harbor equip island argue ramp clarify fen
 // make sourcemaps work!
 require('source-map-support').install();
 
-var yargs = require('yargs');
-var pkg = require('./package.json');
-var ContractKit = require('@celo/contractkit');
-var { toChecksumAddress, BN } = require('ethereumjs-util');
+var yargs = require("yargs");
+var pkg = require("./package.json");
+var ContractKit = require("@celo/contractkit");
+var {toChecksumAddress, BN} = require("ethereumjs-util");
 var ganache;
 try {
-  ganache = require('./lib');
-} catch (e) {
-  ganache = require('./build/ganache-core.node.cli.js');
+  ganache = require("./lib");
+} catch(e) {
+  ganache = require("./build/ganache-core.node.cli.js");
 }
 var to = ganache.to;
-var URL = require('url');
-var fs = require('fs-extra');
-var initArgs = require('./args');
+var fs = require("fs-extra");
+var initArgs = require("./args")
 
-var detailedVersion = 'Ganache CLI v' + pkg.version + ' (ganache-core: ' + ganache.version + ')';
+var detailedVersion = "Ganache CLI v" + pkg.version + " (ganache-core: " + ganache.version + ")";
 
-var isDocker = 'DOCKER' in process.env && process.env.DOCKER.toLowerCase() === 'true';
+var isDocker = "DOCKER" in process.env && process.env.DOCKER.toLowerCase() === "true";
 var argv = initArgs(yargs, detailedVersion, isDocker).argv;
 
-var targz = require('targz');
-var death = require('death');
+var targz = require("targz");
 
 function parseAccounts(accounts) {
   function splitAccount(account) {
-    account = account.split(',');
+    account = account.split(',')
     return {
       secretKey: account[0],
-      balance: account[1],
+      balance: account[1]
     };
   }
 
-  if (typeof accounts === 'string') return [splitAccount(accounts)];
-  else if (!Array.isArray(accounts)) return;
+  if (typeof accounts === 'string')
+    return [ splitAccount(accounts) ];
+  else if (!Array.isArray(accounts))
+    return;
 
-  var ret = [];
+  var ret = []
   for (var i = 0; i < accounts.length; i++) {
     ret.push(splitAccount(accounts[i]));
   }
@@ -53,19 +53,19 @@ function parseAccounts(accounts) {
 }
 
 if (argv.d) {
-  argv.s = 'TestRPC is awesome!'; // Seed phrase; don't change to Ganache, maintain original determinism
+  argv.s = "TestRPC is awesome!"; // Seed phrase; don't change to Ganache, maintain original determinism
 }
 
-if (typeof argv.unlock == 'string') {
+if (typeof argv.unlock == "string") {
   argv.unlock = [argv.unlock];
 }
 
 var logger = console;
 
 // If quiet argument passed, no output
-if (argv.q === true) {
+if (argv.q === true){
   logger = {
-    log: function () {},
+    log: function() {}
   };
 }
 
@@ -73,10 +73,10 @@ if (argv.q === true) {
 // not transaction history.
 if (argv.mem === true) {
   logger = {
-    log: function () {},
+    log: function() {}
   };
 
-  setInterval(function () {
+  setInterval(function() {
     console.log(process.memoryUsage());
   }, 1000);
 }
@@ -115,8 +115,8 @@ var options = {
   keepAliveTimeout: argv.keepAliveTimeout,
   _chainId: argv.chainId,
   // gross!
-  _chainIdRpc: argv.chainId,
-};
+  _chainIdRpc: argv.chainId
+}
 
 async function startGanache() {
   // db_path_tar is set to 'devchain.tar.gz' by default. Running the devchain from this tar file will include all of the Celo contracts.
@@ -130,36 +130,35 @@ startGanache();
 console.log(detailedVersion);
 
 let started = false;
-process.on('uncaughtException', function (e) {
+process.on("uncaughtException", function(e) {
   if (started) {
     console.log(e);
   } else {
     console.log(e.stack);
   }
   process.exit(1);
-});
+})
 
 // See http://stackoverflow.com/questions/10021373/what-is-the-windows-equivalent-of-process-onsigint-in-node-js
-if (process.platform === 'win32') {
-  require('readline')
-    .createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    })
-    .on('SIGINT', function () {
-      process.emit('SIGINT');
-    });
+if (process.platform === "win32") {
+  require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
+  .on("SIGINT", function () {
+    process.emit("SIGINT");
+  });
 }
 
 const closeHandler = function () {
   // graceful shutdown
-  server.close(function (err) {
+  server.close(function(err) {
     if (err) {
       // https://nodejs.org/api/process.html#process_process_exit_code
       // writes to process.stdout in Node.js are sometimes asynchronous and may occur over
       // multiple ticks of the Node.js event loop. Calling process.exit(), however, forces
       // the process to exit before those additional writes to stdout can be performed.
-      if (process.stdout._handle) process.stdout._handle.setBlocking(true);
+      if(process.stdout._handle) process.stdout._handle.setBlocking(true);
       console.log(err.stack || err);
       process.exit();
     } else {
@@ -168,9 +167,9 @@ const closeHandler = function () {
   });
 };
 
-process.on('SIGINT', closeHandler);
-process.on('SIGTERM', closeHandler);
-process.on('SIGHUP', closeHandler);
+process.on("SIGINT", closeHandler);
+process.on("SIGTERM", closeHandler);
+process.on("SIGHUP", closeHandler);
 
 async function startedGanache(err, result) {
   if (err) {
@@ -182,7 +181,7 @@ async function startedGanache(err, result) {
 
   var accounts = state.accounts;
   var addresses = Object.keys(accounts);
-  var ethInWei = new BN('1000000000000000000');
+  var ethInWei = new BN("1000000000000000000");
 
   // Celo protocol contracts import
   // ContractKit was added to get cGLD and cUSD balance
@@ -197,92 +196,92 @@ async function startedGanache(err, result) {
     var balance = new BN(accounts[address].account.balance);
     var strBalanceCelo = celoBalance.dividedToIntegerBy(ethInWei);
     var strBalanceCUSD = cUSDBalance.dividedToIntegerBy(ethInWei);
-    var about = balance.mod(ethInWei).isZero() ? '' : '~';
+    var about = balance.mod(ethInWei).isZero() ? "" : "~";
     var line = `(${index}) ${toChecksumAddress(
       address
     )} (${about}${strBalanceCelo} CELO), (${about}${strBalanceCUSD} cUSD)`;
     index++;
     if (state.isUnlocked(address) == false) {
-      line += ' 🔒';
+      line += " 🔒";
     }
     balancesArray.push(line);
   }
 
-  console.log('');
-  console.log('Available Accounts');
-  console.log('==================');
+  console.log("");
+  console.log("Available Accounts");
+  console.log("==================");
 
   balancesArray.forEach(function (line, index) {
     console.log(line);
   });
 
-  console.log('');
-  console.log('Private Keys');
-  console.log('==================');
+  console.log("");
+  console.log("Private Keys");
+  console.log("==================");
 
-  addresses.forEach(function (address, index) {
-    console.log(`(${index+1}) 0x${accounts[address].secretKey.toString('hex')}`);
+  addresses.forEach(function(address, index) {
+    console.log("(" + index + ") " + "0x" + accounts[address].secretKey.toString("hex"));
   });
 
   if (options.account_keys_path != null) {
-    console.log('');
-    console.log('Accounts and keys saved to ' + options.account_keys_path);
+    console.log("");
+    console.log("Accounts and keys saved to " + options.account_keys_path);
   }
 
   if (options.accounts == null) {
-    console.log('');
-    console.log('HD Wallet');
-    console.log('==================');
-    console.log('Mnemonic:      ' + state.mnemonic);
-    console.log('Base HD Path:  ' + state.wallet_hdpath + '{account_index}');
+    console.log("");
+    console.log("HD Wallet");
+    console.log("==================");
+    console.log("Mnemonic:      " + state.mnemonic);
+    console.log("Base HD Path:  " + state.wallet_hdpath + "{account_index}")
   }
 
   if (options.gasPrice) {
-    console.log('');
-    console.log('Gas Price');
-    console.log('==================');
+    console.log("");
+    console.log("Gas Price");
+    console.log("==================");
     console.log(options.gasPrice);
     if (options.gasPriceFeeCurrencyRatio) {
-      console.log('');
-      console.log('Gas Price for Non-Native Fee Currency');
-      console.log('==================');
+      console.log("");
+      console.log("Gas Price for Non-Native Fee Currency");
+      console.log("==================");
       console.log(options.gasPriceFeeCurrencyRatio * options.gasPrice);
     }
   }
 
   if (options.gasLimit) {
-    console.log('');
-    console.log('Gas Limit');
-    console.log('==================');
+    console.log("");
+    console.log("Gas Limit");
+    console.log("==================");
     console.log(options.gasLimit);
   }
 
   if (options.callGasLimit) {
-    console.log('');
-    console.log('Call Gas Limit');
-    console.log('==================');
+    console.log("");
+    console.log("Call Gas Limit");
+    console.log("==================");
     console.log(options.callGasLimit);
   }
 
   if (options.fork) {
-    console.log('');
-    console.log('Forked Chain');
-    console.log('==================');
-    console.log('Location:       ' + state.blockchain.options.fork);
-    console.log('Block:          ' + to.number(state.blockchain.forkBlockNumber));
-    console.log('Network ID:     ' + state.net_version);
-    console.log('Time:           ' + (state.blockchain.startTime || new Date()).toString());
+    console.log("");
+    console.log("Forked Chain");
+    console.log("==================");
+    console.log("Location:       " + state.blockchain.options.fork);
+    console.log("Block:          " + to.number(state.blockchain.forkBlockNumber));
+    console.log("Network ID:     " + state.net_version);
+    console.log("Time:           " + (state.blockchain.startTime || new Date()).toString());
     let maxCacheSize;
     if (options.forkCacheSize === -1) {
-      maxCacheSize = '∞';
+      maxCacheSize = "∞";
     } else {
-      maxCacheSize = options.forkCacheSize + ' bytes';
+      maxCacheSize = options.forkCacheSize + " bytes";
     }
-    console.log('Max Cache Size: ' + maxCacheSize);
+    console.log("Max Cache Size: " + maxCacheSize);
   }
 
-  console.log('');
-  console.log('Listening on ' + options.hostname + ':' + options.port);
+  console.log("");
+  console.log("Listening on " + options.hostname + ":" + options.port);
 }
 
 // Decompress a given tar.gz chain add the path to 'options.db_path'
